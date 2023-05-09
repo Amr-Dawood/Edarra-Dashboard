@@ -49,8 +49,7 @@ export const createWarehouse = async (req: express.Request, res: express.Respons
 export const updateWarehouse = async (req: express.Request, res: express.Response) => {
     try {
         const warehouseId = req.params.id;
-        const { products, name, location, supervisor_id, status } = req.body;
-
+        const {products, name, location, supervisor_id, status} = req.body;
 
 
         // Update warehouse document
@@ -63,8 +62,8 @@ export const updateWarehouse = async (req: express.Request, res: express.Respons
 
 
         // Update products array for the warehouse
-        await Product.deleteMany({ warehouse_id: warehouseId });
-       const savedProducts =  await Product.insertMany(products.map(product => ({
+        await Product.deleteMany({warehouse_id: warehouseId});
+        const savedProducts = await Product.insertMany(products.map(product => ({
             ...product,
             warehouse_id: warehouseId,
         })));
@@ -76,7 +75,7 @@ export const updateWarehouse = async (req: express.Request, res: express.Respons
         res.json(warehouse);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({message: 'Server error'});
     }
 
 }
@@ -103,6 +102,7 @@ export const getAllWarehouses = async (req: express.Request, res: express.Respon
             })
         );
         res.status(200).send(warehousesWithProducts);
+
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');
@@ -114,16 +114,30 @@ export const deleteWarehouse = async (req: express.Request, res: express.Respons
     const warehouseId = req.params.id;
     try {
         // Delete products associated with the warehouse
-        await Product.deleteMany({ warehouse_id: warehouseId });
+        await Product.deleteMany({warehouse_id: warehouseId});
 
         // Delete the warehouse
         const deletedWarehouse = await Warehouse.findByIdAndDelete(warehouseId);
         if (!deletedWarehouse) {
-            return res.status(404).send({ message: 'Warehouse not found' });
+            return res.status(404).send({message: 'Warehouse not found'});
         }
-        res.send({ message: 'Warehouse and products deleted successfully' });
+        res.send({message: 'Warehouse and products deleted successfully'});
     } catch (error) {
         console.log(error);
-        res.status(500).send({ message: 'Error deleting warehouse and products' });
+        res.status(500).send({message: 'Error deleting warehouse and products'});
     }
+}
+
+
+export const supervisorWarehouse = async (req: express.Request, res: express.Response) => {
+    const supervisor_id = req.params.id;
+    try {
+        const supervisorWarehouse = await Warehouse.findOne({supervisor_id}).populate('products');
+        res.status(200).send(supervisorWarehouse);
+    }catch (error){
+        console.error(error);
+        res.status(500).send('Server Error');
+    }
+
+
 }

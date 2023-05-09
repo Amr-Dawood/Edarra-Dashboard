@@ -1,5 +1,5 @@
 import express from "express";
-import {createUser, getUserByEmail, getUserByUserName} from "../models/users";
+import {createUser, getUserByEmail, getUserById, getUserByUserName} from "../models/users";
 import {authentication, random} from "../helpers";
 
 
@@ -34,6 +34,23 @@ export const login = async (req: express.Request, res: express.Response) => {
         return res.sendStatus(400)
     }
 }
+
+
+
+export const logout = async (req: express.Request, res: express.Response) => {
+    try {
+
+        // Clear the session cookie by setting it to an empty string with an expiration time of 0
+        res.clearCookie('EDAARA', { domain: 'localhost', expires: new Date(0) });
+
+        // Send a success response
+        res.status(200).send('Successfully logged out.');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
+    }
+}
+
 
 
 export const register = async (req: express.Request, res: express.Response) => {

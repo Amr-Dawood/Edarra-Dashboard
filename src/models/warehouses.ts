@@ -17,6 +17,8 @@ export const getWarehouses =  () => WarehouseModel.find();
 
 export const getWarehouseById = (id: string) => WarehouseModel.findOne(id);
 
+export const getWarehouseBySupervisorId = (supervisor_id: string) => WarehouseModel.findOne(supervisor_id);
+
 export const deleteWarehouseById = (id: string) => WarehouseModel.findOneAndDelete({_id: id});
 
 
