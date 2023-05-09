@@ -1,0 +1,329 @@
+{
+	"info": {
+		"_postman_id": "d88e5331-65d7-466d-97a9-b4aac0f62ae7",
+		"name": "Edaraa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26311057"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test-super\",\r\n    \"password\": \"1234\",\r\n    \"email\" : \"test-super@igmail.com\",\r\n    \"usertype\" : \"supervisor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"adawood\",\r\n    \"password\": \"1234\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/64595dc496dcb073238e13d2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"64595dc496dcb073238e13d2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"status\": \"Active\",\r\n        \"_id\": \"6458448123ba983236b78b01\",\r\n        \"username\": \"adawood\",\r\n        \"email\": \"adawood1@gmail.com\",\r\n        \"usertype\": \"admin\",\r\n        \"__v\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/645846560d39c235baeb1940",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"645846560d39c235baeb1940"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "warehouses",
+			"item": [
+				{
+					"name": "get all warehouses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/warehouses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create warehouse with its products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Warehouse A\",\r\n  \"location\": \"New York\",\r\n  \"supervisor_id\": \"645846560d39c235baeb1940\",\r\n  \"status\": \"Active\",\r\n  \"products\": [\r\n    {\r\n      \"name\": \"Product A\",\r\n      \"description\": \"This is Product A\",\r\n      \"stock\": 100\r\n    },\r\n    {\r\n      \"name\": \"Product B\",\r\n      \"description\": \"This is Product B\",\r\n      \"stock\": 50\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/warehouse",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update warehouse",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n     \r\n        \"name\": \"Warehouse Amr\",\r\n        \"location\": \"New Yorksss\",\r\n        \"supervisor_id\": \"645996b7deeb0bac077bc910\",\r\n        \"status\": \"Active\",\r\n        \"products\": [\r\n            {\r\n             \r\n                \"name\": \"Product aaaaA\",\r\n                \"description\": \"This is Product A\",\r\n                \"stock\": 100\r\n              \r\n            },\r\n            {\r\n                \"name\": \"Product B\",\r\n                \"description\": \"This is Product B\",\r\n                \"stock\": 50\r\n            \r\n            }\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/warehouse/645991ece0202af2e3b4cde1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouse",
+								"645991ece0202af2e3b4cde1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete warehouse",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/warehouse/64598a88d0d2c4952189fdbc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouse",
+								"64598a88d0d2c4952189fdbc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "supervisor warehouse",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/warehouse/supervisor/645996b7deeb0bac077bc910",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"warehouse",
+								"supervisor",
+								"645996b7deeb0bac077bc910"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "request",
+			"item": [
+				{
+					"name": "create request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"supervisorId\": \"610c6e88109e356d94815d88\",\r\n  \"currentStock\": 100,\r\n  \"desiredStock\": 150,\r\n  \"productId\" : \"6459a342183128a12421175a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create request Copy",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
