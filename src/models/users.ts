@@ -1,7 +1,11 @@
-import mongoose from "mongoose";
+import {ProductModel} from "./products";
+
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
 
     username: {type: String, required: true},
     email: {type: String, required: true},
@@ -18,6 +22,8 @@ const UserSchema = new mongoose.Schema({
 });
 
 export const UserModel = mongoose.model('User', UserSchema);
+
+
 
 export const getUsers = () => UserModel.find();
 export const getUserByUserName = (username: String) => UserModel.findOne({username});
